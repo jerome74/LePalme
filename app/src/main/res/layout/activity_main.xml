@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/palmebanner_foreground"
+        app:srcCompat="@mipmap/PalmeBanner_foreground"
         android:contentDescription="@string/todo" />
 
     <ImageView
