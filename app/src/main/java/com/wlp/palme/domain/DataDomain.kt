@@ -14,7 +14,7 @@ object DataDomain
         ,Location("02", "sunbed_free" , 0)
         ,Location("03", "sunbed_free" , 0)
         ,Location("04", "sunbed_free" , 0)
-        ,Location("05", "sunbed_out" , 1))
+        ,Location("05", "sunbed_free" , 0))
     )
     val row_top_sx_11 = Row ( listOf<Location>(
         Location("11", "sunbed_free" , 0)

@@ -2,6 +2,7 @@ package com.wlp.palme.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.wlp.palme.R
 import com.wlp.palme.adapter.RowsAdapter
@@ -28,6 +29,5 @@ class SunbedActivity : AppCompatActivity() {
         sunbedListView.layoutManager = linearLayout
 
         sunbedListView.setHasFixedSize(true)
-
     }
 }
