@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onClick_img_sector_top_sx(view : View){
 
+
+    }
+
+    fun onClick_img_sector_botton_sx(view : View){
+
         val localIntent : Intent = Intent(this,SunbedActivity::class.java)
         localIntent.putExtra("SECTOR", ROW_TOP_SX)
         startActivity(localIntent)

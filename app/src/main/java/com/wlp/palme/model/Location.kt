@@ -1,3 +1,8 @@
 package com.wlp.palme.model
 
-class Location(val number : String, val image : String , val reserved : Int = 0 )
+class Location(val number : String
+               , var image : String
+               , var reserved : Int = 0
+               , var name : String = ""
+               , var surname : String = ""
+               , var phone : String = "")
