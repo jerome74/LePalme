@@ -1,12 +1,14 @@
 package com.wlp.palme
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.wlp.palme.adapter.RowsAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.wlp.palme.controller.SunbedActivity
-import com.wlp.palme.util.ROW_TOP_SX
+import com.wlp.palme.controller.SunbedActivityGreenDx
+import com.wlp.palme.controller.SunbedActivityGreenSx
+import com.wlp.palme.util.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,17 +17,30 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun onClick_img_sector_top_sx(view : View){
-
-
+    fun onClick_img_sector_botton_dx(view : View){
+        val localIntent : Intent = Intent(this,SunbedActivity::class.java)
+        localIntent.putExtra("SECTOR", ROW_BOTTON_DX)
+        startActivity(localIntent)
     }
 
     fun onClick_img_sector_botton_sx(view : View){
 
         val localIntent : Intent = Intent(this,SunbedActivity::class.java)
-        localIntent.putExtra("SECTOR", ROW_TOP_SX)
+        localIntent.putExtra("SECTOR", ROW_BOTTON_SX)
         startActivity(localIntent)
 
+    }
+
+    fun onClick_img_sector_top_sx(view : View){
+        val localIntent : Intent = Intent(this,SunbedActivityGreenSx::class.java)
+        localIntent.putExtra("SECTOR", ROW_TOP_SX)
+        startActivity(localIntent)
+    }
+
+    fun onClick_img_sector_top_dx(view : View){
+        val localIntent : Intent = Intent(this,SunbedActivityGreenDx::class.java)
+        localIntent.putExtra("SECTOR", ROW_TOP_DX)
+        startActivity(localIntent)
     }
 
 }

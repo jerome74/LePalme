@@ -12,10 +12,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wlp.palme.R
 import com.wlp.palme.model.Row
-import com.wlp.palme.util.BROADCAST_RESERVATION
 import com.wlp.palme.util.BROADCAST_RESERVATION_OK_1
 
-class RowsAdapter(val context : Context, val rows : List<Row>) :  RecyclerView.Adapter<RowsAdapter.Holder>() {
+class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerView.Adapter<RowsAdapterBeach.Holder>() {
 
     inner class Holder (itemView: View?) : RecyclerView.ViewHolder(itemView!!)
     {

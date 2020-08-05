@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/grass">
+
+    <TextView
+        android:id="@+id/tv_1_gr_sx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/PalmeBanner_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_sb_1_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        tools:text="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2_gr_sx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:id="@+id/img_sb_1_gr_sx"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_2_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_1_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        app:srcCompat="@mipmap/sunbed_green_free" />
+
+    <TextView
+        android:id="@+id/tv_2_gr_sx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/PalmeBanner_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_sb_2_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_sb_1_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        tools:text="2" />
+
+    <ImageView
+        android:id="@+id/img_sb_2_gr_sx"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_3_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_2_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        app:srcCompat="@mipmap/sunbed_green_free" />
+
+    <TextView
+        android:id="@+id/tv_3_gr_sx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/PalmeBanner_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_sb_3_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_sb_2_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        tools:text="3" />
+
+    <ImageView
+        android:id="@+id/img_sb_3_gr_sx"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_4_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_3_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        app:srcCompat="@mipmap/sunbed_green_free" />
+
+    <TextView
+        android:id="@+id/tv_4_gr_sx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/PalmeBanner_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_sb_4_gr_sx"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_sb_3_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        tools:text="4" />
+
+    <ImageView
+        android:id="@+id/img_sb_4_gr_sx"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_4_gr_sx"
+        app:layout_constraintTop_toTopOf="@+id/guideline2_gr_sx"
+        app:srcCompat="@mipmap/sunbed_green_free" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
