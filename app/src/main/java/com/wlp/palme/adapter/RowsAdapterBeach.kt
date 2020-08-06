@@ -2,12 +2,14 @@ package com.wlp.palme.adapter
 
 import android.app.AlertDialog
 import android.content.*
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wlp.palme.R
@@ -72,7 +74,13 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         row.locations[0].phone = addNumberTxt.text.toString()
                         row.locations[0].reserved = 1
 
-                        img_sb_1?.setImageResource(context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded_1 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_1);
+
+                        rounded_1.cornerRadius = 15f;
+                        rounded_1.isCircular = true;
+
+                        img_sb_1.setImageDrawable(rounded_1);
 
                     })
                     .setNegativeButton("cancella", {
@@ -110,7 +118,13 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         row.locations[1].phone = addNumberTxt.text.toString()
                         row.locations[1].reserved = 1
 
-                        img_sb_2?.setImageResource(context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded_2 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_2);
+
+                        rounded_2.cornerRadius = 15f;
+                        rounded_2.isCircular = true;
+
+                        img_sb_2.setImageDrawable(rounded_2);
 
                     })
                     .setNegativeButton("cancella", {
@@ -149,7 +163,13 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         row.locations[2].phone = addNumberTxt.text.toString()
                         row.locations[2].reserved = 1
 
-                        img_sb_3?.setImageResource(context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded_3 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_3);
+
+                        rounded_3.cornerRadius = 15f;
+                        rounded_3.isCircular = true;
+
+                        img_sb_3.setImageDrawable(rounded_3);
 
                     })
                     .setNegativeButton("cancella", {
@@ -188,7 +208,13 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         row.locations[3].phone = addNumberTxt.text.toString()
                         row.locations[3].reserved = 1
 
-                        img_sb_4?.setImageResource(context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded_4 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_4);
+
+                        rounded_4.cornerRadius = 15f;
+                        rounded_4.isCircular = true;
+
+                        img_sb_4.setImageDrawable(rounded_4);
 
                     })
                     .setNegativeButton("cancella", {
@@ -227,7 +253,13 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         row.locations[4].phone = addNumberTxt.text.toString()
                         row.locations[4].reserved = 1
 
-                        img_sb_5?.setImageResource(context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val bitmap_5 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded_5 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_5);
+
+                        rounded_5.cornerRadius = 15f;
+                        rounded_5.isCircular = true;
+
+                        img_sb_5.setImageDrawable(rounded_5);
 
                     })
                     .setNegativeButton("cancella", {
@@ -236,11 +268,66 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                     }).create().show()}
             })
 
-            img_sb_1?.setImageResource(context.resources.getIdentifier(row.locations[0].image, "mipmap", context.packageName))
-            img_sb_2?.setImageResource(context.resources.getIdentifier(row.locations[1].image, "mipmap", context.packageName))
-            img_sb_3?.setImageResource(context.resources.getIdentifier(row.locations[2].image, "mipmap", context.packageName))
-            img_sb_4?.setImageResource(context.resources.getIdentifier(row.locations[3].image, "mipmap", context.packageName))
-            img_sb_5?.setImageResource(context.resources.getIdentifier(row.locations[4].image, "mipmap", context.packageName))
+            /**
+             *  img_sb_1
+             */
+
+            val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[0].image, "mipmap", context.packageName))
+            val rounded_1 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_1);
+
+            rounded_1.cornerRadius = 15f;
+            rounded_1.isCircular = true;
+
+            img_sb_1.setImageDrawable(rounded_1);
+
+            /**
+             *  img_sb_2
+             */
+
+            val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[1].image, "mipmap", context.packageName))
+            val rounded_2 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_2);
+
+            rounded_2.cornerRadius = 15f;
+            rounded_2.isCircular = true;
+
+            img_sb_2.setImageDrawable(rounded_2);
+
+            /**
+             *  3
+             */
+
+            val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[2].image, "mipmap", context.packageName))
+            val rounded_3 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_3);
+
+            rounded_3.cornerRadius = 15f;
+            rounded_3.isCircular = true;
+
+            img_sb_3.setImageDrawable(rounded_3);
+
+            /**
+             *  4
+             */
+
+            val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[3].image, "mipmap", context.packageName))
+            val rounded_4 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_4);
+
+            rounded_4.cornerRadius = 15f;
+            rounded_4.isCircular = true;
+
+            img_sb_4.setImageDrawable(rounded_4);
+
+            /**
+             *  1
+             */
+
+            val bitmap_5 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[4].image, "mipmap", context.packageName))
+            val rounded_5 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_5);
+
+            rounded_5.cornerRadius = 15f;
+            rounded_5.isCircular = true;
+
+            img_sb_5.setImageDrawable(rounded_5);
+
 
         }
     }
