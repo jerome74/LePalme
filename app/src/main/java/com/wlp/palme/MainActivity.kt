@@ -1,13 +1,18 @@
 package com.wlp.palme
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.wlp.palme.controller.LoginActivity
 import com.wlp.palme.controller.SunbedActivity
 import com.wlp.palme.controller.SunbedActivityGreenDx
 import com.wlp.palme.controller.SunbedActivityGreenSx
+import com.wlp.palme.domain.AuthObj
+import com.wlp.palme.model.UserObj
 import com.wlp.palme.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +46,22 @@ class MainActivity : AppCompatActivity() {
         val localIntent : Intent = Intent(this,SunbedActivityGreenDx::class.java)
         localIntent.putExtra("SECTOR", ROW_TOP_DX)
         startActivity(localIntent)
+    }
+
+    fun onLoginBntClicked(view : View){
+
+        if (!AuthObj.isLoggIn) {
+            val intentLogin : Intent = Intent(this, LoginActivity::class.java)
+            startActivity(intentLogin)
+        }
+        else
+        {
+            loginBtn.text = "Log-In"
+
+            UserObj.reset()
+            AuthObj.reset()
+        }
+
     }
 
 }
