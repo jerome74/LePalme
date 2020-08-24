@@ -39,19 +39,19 @@ class SharedPrefs(val context : Context)
 
     fun userProfile() : UserProfile{
         //Log.d("#userProfile", "get ${context.getSharedPreferences("prefs",0).getString("email","")!!}")
-        return UserProfile(context.getSharedPreferences("prefs",0).getString("userProfile._id","")!!
-            , context.getSharedPreferences("prefs",0).getString("userProfile.name","")!!
+        return UserProfile(context.getSharedPreferences("prefs",0).getString("userProfile.id","")!!
+            , context.getSharedPreferences("prefs",0).getString("userProfile.nickname","")!!
             , context.getSharedPreferences("prefs",0).getString("userProfile.email","")!!
-            , context.getSharedPreferences("prefs",0).getString("userProfile.avatarName","")!!
-            , context.getSharedPreferences("prefs",0).getString("userProfile.avatarColor","")!!)
+            , context.getSharedPreferences("prefs",0).getString("userProfile.avatarname","")!!
+            , context.getSharedPreferences("prefs",0).getString("userProfile.avatarcolor","")!!)
     }
 
     fun userProfile(value : UserProfile) : Unit{
-        context.getSharedPreferences("prefs",0).edit().putString("userProfile._id", value._id).apply()
-        context.getSharedPreferences("prefs",0).edit().putString("userProfile.name", value.name).apply()
+        context.getSharedPreferences("prefs",0).edit().putString("userProfile.id", value.id).apply()
+        context.getSharedPreferences("prefs",0).edit().putString("userProfile.nickname", value.nickname).apply()
         context.getSharedPreferences("prefs",0).edit().putString("userProfile.email", value.email).apply()
-        context.getSharedPreferences("prefs",0).edit().putString("userProfile.avatarName", value.avatarName).apply()
-        context.getSharedPreferences("prefs",0).edit().putString("userProfile.avatarColor", value.avatarColor).apply()
+        context.getSharedPreferences("prefs",0).edit().putString("userProfile.avatarname", value.avatarname).apply()
+        context.getSharedPreferences("prefs",0).edit().putString("userProfile.avatarcolor", value.avatarcolor).apply()
         Log.d("#userProfile", "set ${value}")
 
     }

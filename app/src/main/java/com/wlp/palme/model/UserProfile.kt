@@ -2,11 +2,11 @@ package com.wlp.palme.model
 
 import org.json.JSONObject
 
-data class UserProfile constructor(   var _id : String
-                                      , var name : String
+data class UserProfile constructor(   var id : String
+                                      , var nickname : String
                                       , var email : String
-                                      , var avatarName : String
-                                      , var avatarColor : String) : IModel
+                                      , var avatarname : String
+                                      , var avatarcolor : String) : IModel
 
 
 {
@@ -19,10 +19,10 @@ data class UserProfile constructor(   var _id : String
         val jsonObject : JSONObject = JSONObject();
 
 
-        jsonObject.put("name", name)
+        jsonObject.put("nickname", nickname)
         jsonObject.put("email", email)
-        jsonObject.put("avatarName", avatarName)
-        jsonObject.put("avatarColor", avatarColor)
+        jsonObject.put("avatarname", avatarname)
+        jsonObject.put("avatarcolor", avatarcolor)
 
         return jsonObject.toString()
 

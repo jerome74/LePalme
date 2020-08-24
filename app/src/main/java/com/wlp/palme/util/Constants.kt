@@ -22,8 +22,7 @@ const val BROADCAST_RESERVATION_OK_1 = "broadcast.reservation.ok.1"
 const val BASE_URL : String = "https://lepalme-service.herokuapp.com"
 //-------------------------------------------------------------------
 
-const val URI_REGISTER : String = "$BASE_URL/v1/account/register"
-const val URI_LOGIN : String = "$BASE_URL/v1/account/login"
-const val URI_CREATE_USER : String = "$BASE_URL/v1/user/add"
-const val URI_FIND_BY_EMAIL : String = "$BASE_URL/v1/user/byEmail"
+
+const val URI_LOGIN : String = "$BASE_URL/login"
+const val URI_FIND_BY_EMAIL : String = "$BASE_URL/api/v1/locations/profile"
 

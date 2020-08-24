@@ -13,10 +13,10 @@ object EmailService {
 
     fun findProfileByEmail(context: Context, user : User, complete : (Boolean, String) -> Unit ){
 
-        var uri : String = "${URI_FIND_BY_EMAIL}/${user.email}"
+        var uri : String = "${URI_FIND_BY_EMAIL}/${user.username}"
 
         var mapHeader : MutableMap<String,String> = mutableMapOf();
-        mapHeader.put("Authorization","Bearer ${AuthObj.token}")
+        mapHeader.put("Authentication","${AuthObj.token}")
 
         val baseStringRequest : BaseStringQueryRequest = BaseStringQueryRequest(
             uri

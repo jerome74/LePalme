@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest
 import com.wlp.palme.domain.AuthObj
 import org.json.JSONObject
 
-class BaseStringPostRequest constructor(
+class BaseStringPostLoginRequest constructor(
     uri: String
     , val model: IModel
     , val contentType: String
@@ -39,5 +39,13 @@ class BaseStringPostRequest constructor(
             return super.getHeaders()
         else
             return mapHeaders!!
+    }
+
+    override fun parseNetworkResponse(response: NetworkResponse?): Response<String> {
+
+        val jsonResponse : JSONObject = JSONObject();
+        jsonResponse.put("Response", "ok")
+        AuthObj.token = response!!.headers.get("Authentication")!!
+        return Response.success(jsonResponse.toString(),  HttpHeaderParser.parseCacheHeaders(response))
     }
 }

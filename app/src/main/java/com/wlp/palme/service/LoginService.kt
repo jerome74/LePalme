@@ -3,6 +3,7 @@ package com.wlp.palme.service
 import android.content.Context
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.wlp.palme.model.BaseStringPostLoginRequest
 import com.wlp.palme.model.BaseStringPostRequest
 import com.wlp.palme.model.User
 import com.wlp.palme.util.URI_LOGIN
@@ -15,7 +16,7 @@ object LoginService {
 
         var uri : String = URI_LOGIN
 
-        val baseStringRequest : BaseStringPostRequest = BaseStringPostRequest(
+        val baseStringPostLoginRequest : BaseStringPostLoginRequest = BaseStringPostLoginRequest(
             uri
             ,user
             , "application/json; charset=utf-8"
@@ -30,7 +31,7 @@ object LoginService {
                 }
             } , null )
 
-        Volley.newRequestQueue(context).add(baseStringRequest)
+        Volley.newRequestQueue(context).add(baseStringPostLoginRequest)
 
     }
 

@@ -4,7 +4,7 @@ import com.wlp.palme.util.ThisApplication
 
 object UserObj
 {
-    var userAvatar : String = "profileDefault"
+    var userAvatar : String = "profiledefault"
     var avatarColor : String = "[0.5, 0.5, 0.5, 1]"
 
     //var userProfile : UserProfile? = null;

@@ -53,10 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 if(esito)
                 {
                     try{
-                        val responseJson : JSONObject = JSONObject(messaggio)
                         AuthObj.isLoggIn = true
-                        AuthObj.token = responseJson.getString("token")
-
                         Toast.makeText(this, "user Login successfully", Toast.LENGTH_SHORT).show()
                         callFindProfileByEmail(user)
 
@@ -88,11 +85,11 @@ class LoginActivity : AppCompatActivity() {
                     try{
                         val responseJson : JSONObject = JSONObject(messaggio)
 
-                        val userProfile : UserProfile = UserProfile( responseJson.getString("_id")
-                            , responseJson.getString("name")
+                        val userProfile : UserProfile = UserProfile( responseJson.getString("id")
+                            , responseJson.getString("nickname")
                             , responseJson.getString("email")
-                            , responseJson.getString("avatarName")
-                            , responseJson.getString("avatarColor"))
+                            , responseJson.getString("avatarname")
+                            , responseJson.getString("avatarcolor"))
                         UserObj.userProfile = userProfile
                         manageSpinner(true, View.INVISIBLE)
                         LocalBroadcastManager.getInstance(this).sendBroadcast(Intent(BROADCAST_LOGIN))

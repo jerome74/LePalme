@@ -2,7 +2,7 @@ package com.wlp.palme.model
 
 import org.json.JSONObject
 
-data class User constructor(var email: String, var password : String) : IModel
+data class User constructor(var username: String, var password : String) : IModel
 {
     override fun toRequest() : String {
         return toString()
@@ -12,7 +12,7 @@ data class User constructor(var email: String, var password : String) : IModel
 
         val jsonObject : JSONObject = JSONObject();
 
-        jsonObject.put("email", email)
+        jsonObject.put("username", username)
         jsonObject.put("password", password)
 
         return jsonObject.toString()
