@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun onLoginBtnClicked(view : View){
 
-        val user : User = User(nameLoginTxt.text.toString(),passLoginTxt.text.toString())
+        val user : User = User(nameLoginTxt.text.toString(),passLoginTxt2.text.toString())
         manageSpinner(false, View.VISIBLE)
         hideKeyboard()
         callLoginUser(user)

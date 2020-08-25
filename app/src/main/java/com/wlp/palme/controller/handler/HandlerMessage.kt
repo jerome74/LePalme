@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Message
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.wlp.palme.LepalmeActivity
+import com.wlp.palme.util.BROADCAST_LOGIN
 
 class SplashHandler(val context: Context, val activity: Activity) : Handler()
 {
@@ -19,6 +21,7 @@ class SplashHandler(val context: Context, val activity: Activity) : Handler()
 
         when(msg.what){
             0->  localIntent = Intent(context, LepalmeActivity::class.java)
+            1 -> LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(BROADCAST_LOGIN))
         }
 
         context.startActivity(localIntent!!)

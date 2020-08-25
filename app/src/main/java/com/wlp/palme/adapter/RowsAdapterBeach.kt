@@ -69,7 +69,7 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                         val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                        row.locations[0].name = addNameTxt.text.toString()
+                        row.locations[0].firstname = addNameTxt.text.toString()
                         row.locations[0].surname = addSurnameTxt.text.toString()
                         row.locations[0].phone = addNumberTxt.text.toString()
                         row.locations[0].reserved = 1
@@ -113,7 +113,7 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                         val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                        row.locations[1].name = addNameTxt.text.toString()
+                        row.locations[1].firstname = addNameTxt.text.toString()
                         row.locations[1].surname = addSurnameTxt.text.toString()
                         row.locations[1].phone = addNumberTxt.text.toString()
                         row.locations[1].reserved = 1
@@ -158,7 +158,7 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                         val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                        row.locations[2].name = addNameTxt.text.toString()
+                        row.locations[2].firstname = addNameTxt.text.toString()
                         row.locations[2].surname = addSurnameTxt.text.toString()
                         row.locations[2].phone = addNumberTxt.text.toString()
                         row.locations[2].reserved = 1
@@ -203,7 +203,7 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                         val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                        row.locations[3].name = addNameTxt.text.toString()
+                        row.locations[3].firstname = addNameTxt.text.toString()
                         row.locations[3].surname = addSurnameTxt.text.toString()
                         row.locations[3].phone = addNumberTxt.text.toString()
                         row.locations[3].reserved = 1
@@ -248,7 +248,7 @@ class RowsAdapterBeach(val context : Context, val rows : List<Row>) :  RecyclerV
                         val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                         val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                        row.locations[4].name = addNameTxt.text.toString()
+                        row.locations[4].firstname = addNameTxt.text.toString()
                         row.locations[4].surname = addSurnameTxt.text.toString()
                         row.locations[4].phone = addNumberTxt.text.toString()
                         row.locations[4].reserved = 1

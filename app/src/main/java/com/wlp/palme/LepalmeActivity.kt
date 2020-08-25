@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Message
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -22,11 +23,20 @@ import com.wlp.palme.controller.LoginActivity
 import com.wlp.palme.controller.SunbedActivity
 import com.wlp.palme.controller.SunbedActivityGreenDx
 import com.wlp.palme.controller.SunbedActivityGreenSx
+import com.wlp.palme.controller.handler.SplashHandler
 import com.wlp.palme.domain.AuthObj
+import com.wlp.palme.domain.DataDomain
+import com.wlp.palme.model.CompleteObj
+import com.wlp.palme.model.Location
 import com.wlp.palme.model.UserObj
+import com.wlp.palme.model.UserProfile
+import com.wlp.palme.service.EmailService
+import com.wlp.palme.service.LocationsService
 import com.wlp.palme.util.*
 import kotlinx.android.synthetic.main.activity_le_palme.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 class LepalmeActivity : AppCompatActivity() {
 
@@ -44,10 +54,19 @@ class LepalmeActivity : AppCompatActivity() {
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener { true }
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(loginReceiver, IntentFilter(
-            BROADCAST_LOGIN))
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            loginReceiver, IntentFilter(
+                BROADCAST_LOGIN
+            )
+        )
 
-        //notifyEventuallyLogin();
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            dateReceiver, IntentFilter(
+                BROADCAST_DATE
+            )
+        )
+
+        notifyEventuallyLogin();
     }
 
 
@@ -146,7 +165,7 @@ class LepalmeActivity : AppCompatActivity() {
     val loginReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?)
         {
-            if (AuthObj.isLoggIn)
+            if (AuthObj.isLoggIn && emailTxt != null && userImg != null)
             {
                 emailTxt.text = UserObj.userProfile?.nickname
                 var nav_view = findViewById<NavigationView>(R.id.nav_view)
@@ -164,8 +183,85 @@ class LepalmeActivity : AppCompatActivity() {
         }
     }
 
+    val dateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?)
+        {
+            var datetime =  intent!!.getStringExtra("datetime")
+            var localLocation = Location()
+            localLocation.datetime = datetime
+
+
+            LocationsService.findLocationsByDateTime(context!!
+                ,localLocation
+            ) { esito: Boolean, messaggio: String ->
+                if(esito) {
+                    try{
+                        if(messaggio.length > 0) {
+                            val responseJson: JSONArray = JSONArray(messaggio)
+
+                            var i = 0
+                            while (i < responseJson.length()) {
+                                val rowname = responseJson.getJSONObject(i).getString("rowname")
+                                val number = responseJson.getJSONObject(i).getString("number")
+
+                                var sector =  DataDomain.sector("#$rowname#")
+
+                               for( rows in sector!! ) {
+                                   for (locallocation in rows.locations) {
+                                        if(locallocation.number.equals(number))
+                                        {
+                                            locallocation.rowname = responseJson.getJSONObject(i).getString("rowname")
+                                            locallocation.locationname = responseJson.getJSONObject(i).getString("locationname")
+                                            locallocation.image = responseJson.getJSONObject(i).getString("image")
+                                            locallocation.reserved = 1
+                                            locallocation.firstname = responseJson.getJSONObject(i).getString("firstname")
+                                            locallocation.surname = responseJson.getJSONObject(i).getString("surname")
+                                            locallocation.phone = responseJson.getJSONObject(i).getString("phone")
+                                            locallocation.datetime = responseJson.getJSONObject(i).getString("datetime")
+                                        }
+                                   }
+                               }
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            DataDomain.reset()
+                        }
+
+                    }catch(e : Exception){
+                        Toast.makeText(context!!, "error : ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+                } else {
+                    Toast.makeText(context!!, "profile found error : $messaggio", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     fun notifyEventuallyLogin() {
-        LocalBroadcastManager.getInstance(this).sendBroadcast(Intent(BROADCAST_LOGIN))
+
+        if (AuthObj.isLoggIn)
+        {
+            var nav_view = findViewById<NavigationView>(R.id.nav_view)
+
+            nav_view.menu.findItem(R.id.loginItem).setTitle("Log-out");
+
+            var email = nav_view.getHeaderView(0).findViewById<TextView>(R.id.emailTxt)
+            var image = nav_view.getHeaderView(0).findViewById<ImageView>(R.id.userImg)
+
+            email.text = UserObj.userProfile?.nickname
+
+            val identifier = resources.getIdentifier(UserObj.userProfile?.avatarname,"mipmap",packageName)
+            val bitmap_1 = BitmapFactory.decodeResource(resources, identifier)
+            val rounded_1 = RoundedBitmapDrawableFactory.create(resources,bitmap_1);
+
+            rounded_1.cornerRadius = 15f;
+            rounded_1.isCircular = true;
+
+            image.setImageDrawable(rounded_1);
+        }
     }
 
     override fun onResume() {

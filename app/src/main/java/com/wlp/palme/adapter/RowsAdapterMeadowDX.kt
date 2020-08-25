@@ -70,12 +70,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>) :  Recyc
                             val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                             val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                            row.locations[0].name = addNameTxt.text.toString()
+                            row.locations[0].firstname = addNameTxt.text.toString()
                             row.locations[0].surname = addSurnameTxt.text.toString()
                             row.locations[0].phone = addNumberTxt.text.toString()
                             row.locations[0].reserved = 1
 
-                            val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_green_out", "mipmap", context.packageName))
+                            val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
                             val rounded_1 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_1);
 
                             rounded_1.cornerRadius = 15f;
@@ -114,13 +114,13 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>) :  Recyc
                             val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                             val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                            row.locations[1].name = addNameTxt.text.toString()
+                            row.locations[1].firstname = addNameTxt.text.toString()
                             row.locations[1].surname = addSurnameTxt.text.toString()
                             row.locations[1].phone = addNumberTxt.text.toString()
                             row.locations[1].reserved = 1
 
 
-                            val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_green_out", "mipmap", context.packageName))
+                            val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
                             val rounded_2 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_2);
 
                             rounded_2.cornerRadius = 15f;
@@ -160,12 +160,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>) :  Recyc
                             val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                             val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                            row.locations[2].name = addNameTxt.text.toString()
+                            row.locations[2].firstname = addNameTxt.text.toString()
                             row.locations[2].surname = addSurnameTxt.text.toString()
                             row.locations[2].phone = addNumberTxt.text.toString()
                             row.locations[2].reserved = 1
 
-                            val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_green_out", "mipmap", context.packageName))
+                            val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
                             val rounded_3 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_3);
 
                             rounded_3.cornerRadius = 15f;
@@ -205,12 +205,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>) :  Recyc
                             val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                             val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                            row.locations[3].name = addNameTxt.text.toString()
+                            row.locations[3].firstname = addNameTxt.text.toString()
                             row.locations[3].surname = addSurnameTxt.text.toString()
                             row.locations[3].phone = addNumberTxt.text.toString()
                             row.locations[3].reserved = 1
 
-                            val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_green_out", "mipmap", context.packageName))
+                            val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
                             val rounded_4 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_4);
 
                             rounded_4.cornerRadius = 15f;
@@ -250,12 +250,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>) :  Recyc
                             val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
                             val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
 
-                            row.locations[4].name = addNameTxt.text.toString()
+                            row.locations[4].firstname = addNameTxt.text.toString()
                             row.locations[4].surname = addSurnameTxt.text.toString()
                             row.locations[4].phone = addNumberTxt.text.toString()
                             row.locations[4].reserved = 1
 
-                            val bitmap_5 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_green_out", "mipmap", context.packageName))
+                            val bitmap_5 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
                             val rounded_5 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_5);
 
                             rounded_5.cornerRadius = 15f;
