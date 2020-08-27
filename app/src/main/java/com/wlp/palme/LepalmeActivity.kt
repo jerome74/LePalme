@@ -31,6 +31,7 @@ import com.wlp.palme.service.EmailService
 import com.wlp.palme.service.LocationsService
 import com.wlp.palme.util.*
 import kotlinx.android.synthetic.main.activity_le_palme.*
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.json.JSONArray
@@ -65,6 +66,12 @@ class LepalmeActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).registerReceiver(
             dateReceiver, IntentFilter(
                 BROADCAST_DATE
+            )
+        )
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            counterReceiver, IntentFilter(
+                BROADCAST_COUNTER
             )
         )
 
@@ -218,6 +225,21 @@ class LepalmeActivity : AppCompatActivity() {
         }
     }
 
+    val counterReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?)
+        {
+            tv_prato_destro.text = "Prato Destro"
+            tv_prato_sinistro.text = "Prato Sinistro"
+            tv_spiaggia_destra.text = "Spiaggia Destra"
+            tv_spiaggia_sinistra.text = "Spiaggia Sinistra"
+
+            tv_prato_destro.text = "${tv_prato_destro.text} : ${DataDomain.number_free_row_top_dx}"
+            tv_prato_sinistro.text = "${tv_prato_sinistro.text} : ${DataDomain.number_free_row_top_sx}"
+            tv_spiaggia_destra.text = "${tv_spiaggia_destra.text} : ${DataDomain.number_free_row_botton_dx}"
+            tv_spiaggia_sinistra.text = "${tv_spiaggia_sinistra.text} : ${DataDomain.number_free_row_botton_sx}"
+        }
+    }
+
     val dateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?)
         {
@@ -239,12 +261,18 @@ class LepalmeActivity : AppCompatActivity() {
                         if(messaggio.length > 0 && !messaggio.equals("[]")) {
                             val responseJson: JSONArray = JSONArray(messaggio)
 
+                            tv_prato_destro.text = "Prato Destro"
+                            tv_prato_sinistro.text = "Prato Sinistro"
+                            tv_spiaggia_destra.text = "Spiaggia Destra"
+                            tv_spiaggia_sinistra.text = "Spiaggia Sinistra"
+
                             var i = 0
                             while (i < responseJson.length()) {
                                 val rowname = responseJson.getJSONObject(i).getString("rowname")
                                 val number = responseJson.getJSONObject(i).getString("number")
 
                                 var sector =  DataDomain.sector("#$rowname#")
+                                DataDomain.decreaseNumber("#$rowname#")
 
                                for( rows in sector!! ) {
                                    for (locallocation in rows.locations) {
@@ -269,8 +297,18 @@ class LepalmeActivity : AppCompatActivity() {
                         }
                         else
                         {
+                            tv_prato_destro.text = "Prato Destro"
+                            tv_prato_sinistro.text = "Prato Sinistro"
+                            tv_spiaggia_destra.text = "Spiaggia Destra"
+                            tv_spiaggia_sinistra.text = "Spiaggia Sinistra"
+
                             DataDomain.reset()
                         }
+
+                        tv_prato_destro.text = "${tv_prato_destro.text} : ${DataDomain.number_free_row_top_dx}"
+                        tv_prato_sinistro.text = "${tv_prato_sinistro.text} : ${DataDomain.number_free_row_top_sx}"
+                        tv_spiaggia_destra.text = "${tv_spiaggia_destra.text} : ${DataDomain.number_free_row_botton_dx}"
+                        tv_spiaggia_sinistra.text = "${tv_spiaggia_sinistra.text} : ${DataDomain.number_free_row_botton_sx}"
 
                     }catch(e : Exception){
                         Toast.makeText(context!!, "error : ${e.message}", Toast.LENGTH_SHORT).show()

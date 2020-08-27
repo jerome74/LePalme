@@ -12,6 +12,7 @@ const val ROW_TOP_DX = "#row_top_dx#"
 const val BROADCAST_LOGIN = "BROADCAST_9999"
 const val BROADCAST_DATE = "BROADCAST_9998"
 const val BROADCAST_RESERVATION = "BROADCAST_9997"
+const val BROADCAST_COUNTER = "BROADCAST_9996"
 const val BROADCAST_RESERVATION_FOUND = "broadcast.reservation"
 const val BROADCAST_RESERVATION_OK_1 = "broadcast.reservation.ok.1"
 

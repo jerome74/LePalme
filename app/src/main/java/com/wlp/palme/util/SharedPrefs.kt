@@ -37,6 +37,16 @@ class SharedPrefs(val context : Context)
 
     }
 
+    fun notify() : String{
+        Log.d("#notify", "get ${context.getSharedPreferences("prefs",0).getString("notify","")!!}")
+        return context.getSharedPreferences("prefs",0).getString("notify","")!!
+    }
+
+    fun notify(value : String) : Unit{
+        context.getSharedPreferences("prefs",0).edit().putString("notify", value).apply()
+        Log.d("#notify", "set ${value}")
+    }
+
     fun userProfile() : UserProfile{
         //Log.d("#userProfile", "get ${context.getSharedPreferences("prefs",0).getString("email","")!!}")
         return UserProfile(context.getSharedPreferences("prefs",0).getString("userProfile.id","")!!

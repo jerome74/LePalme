@@ -50,6 +50,8 @@ object DataDomain
         , row_top_sx_71
         , row_top_sx_61)
 
+    var number_free_row_top_sx = 20
+
     /**
      * rows_top_dx
      */
@@ -96,6 +98,8 @@ object DataDomain
         , row_top_dx_75A
         , row_top_dx_75
         , row_top_dx_65)
+
+    var number_free_row_top_dx = 25
 
     /**
      * rows_botton_sx
@@ -166,6 +170,8 @@ object DataDomain
         ,row_botton_sx_51
         ,row_botton_sx_61
         ,row_botton_sx_71)
+
+    var number_free_row_botton_sx = 40
 
 
     /**
@@ -238,7 +244,7 @@ object DataDomain
         ,row_botton_dx_66
         ,row_botton_dx_76)
 
-
+    var number_free_row_botton_dx = 40
 
 
     fun sector(sector: String): List<Row>?
@@ -273,6 +279,21 @@ object DataDomain
                 location.reset()
 
 
+         number_free_row_top_sx = 20
+         number_free_row_botton_dx = 40
+         number_free_row_botton_sx = 40
+         number_free_row_top_dx = 25
+    }
+
+    fun decreaseNumber(sector: String)
+    {
+        when(sector)
+        {
+            "#row_botton_sx#" -> number_free_row_botton_sx--
+            "#row_botton_dx#" -> number_free_row_botton_dx--
+            "#row_top_sx#" ->   number_free_row_top_sx--
+            "#row_top_dx#" ->   number_free_row_top_dx--
+        }
     }
 
 }

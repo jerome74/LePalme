@@ -13,8 +13,11 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wlp.palme.R
+import com.wlp.palme.domain.AuthObj
+import com.wlp.palme.domain.DataDomain
 import com.wlp.palme.model.Row
 import com.wlp.palme.service.LocationsService
+import com.wlp.palme.util.BROADCAST_COUNTER
 import com.wlp.palme.util.BROADCAST_RESERVATION_OK_1
 import org.json.JSONObject
 
@@ -122,6 +125,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>, val loca
                         ) { esito: Boolean, messaggio: String ->
                             if(esito) {
                                 try{
+                                    sendWhatsAppMessage(row.locations[index].datetime
+                                        , row.locations[index].firstname
+                                        , row.locations[index].surname
+                                        , row.locations[index].number
+                                        , row.locations[index].phone, "modificata" )
+
                                     Toast.makeText(context, "prenotazione modificata!", Toast.LENGTH_SHORT).show()
 
                                 }catch(e : Exception){
@@ -146,6 +155,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>, val loca
                         ) { esito: Boolean, messaggio: String ->
                             if(esito) {
                                 try{
+                                    sendWhatsAppMessage(row.locations[index].datetime
+                                        , row.locations[index].firstname
+                                        , row.locations[index].surname
+                                        , row.locations[index].number
+                                        , row.locations[index].phone, "annullata" )
+
                                     Toast.makeText(context, "prenotazione annullata!", Toast.LENGTH_SHORT).show()
 
                                     row.locations[index].reset()
@@ -199,6 +214,12 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>, val loca
                         ) { esito: Boolean, messaggio: String ->
                             if(esito) {
                                 try{
+                                    sendWhatsAppMessage(row.locations[index].datetime
+                                        , row.locations[index].firstname
+                                        , row.locations[index].surname
+                                        , row.locations[index].number
+                                        , row.locations[index].phone, "inserita" )
+
                                     Toast.makeText(context, "prenotazione inserita!", Toast.LENGTH_SHORT).show()
 
                                     val responseJson : JSONObject = JSONObject(messaggio)
@@ -236,6 +257,41 @@ class RowsAdapterMeadowDX (val context : Context, val rows : List<Row>, val loca
         rounded.isCircular = true;
 
         img.setImageDrawable(rounded);
+    }
+
+    fun sendWhatsAppMessage(datetime : String , fistname : String, surname : String, number : String, phone : String , action : String ){
+
+        if(AuthObj.notify.equals("true")) {
+
+            try {
+                val text: String =
+                    "salve, la sua prenotazione dell'ombrellone numero : $number, al nome : $fistname $surname, " +
+                            "per il giorno :  ${datetime.substring(0, 2)}/${datetime.substring(
+                                2,
+                                4
+                            )}/${datetime.substring(4, 8)}  è stata $action!"
+                var number: String = "39$phone"
+
+                val sendIntent = Intent("android.intent.action.MAIN")
+                sendIntent.putExtra("jid", number.toString() + "@s.whatsapp.net")
+                sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                sendIntent.setPackage("com.whatsapp")
+                sendIntent.type = "text/plain"
+                context.startActivity(sendIntent)
+            } catch (e: Exception) {
+                println(e.printStackTrace())
+            }
+        }
+
+        when(action)
+        {
+            "inserita" -> DataDomain.number_free_row_top_dx--
+            "annullata" -> DataDomain.number_free_row_top_dx++
+        }
+
+        LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(BROADCAST_COUNTER))
     }
 
 } 

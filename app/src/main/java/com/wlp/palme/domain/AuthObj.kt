@@ -16,6 +16,10 @@ object AuthObj
         get() = ThisApplication.shardPrefs.email()!!
         set(value) = ThisApplication.shardPrefs.email(value)
 
+    var notify
+        get() = ThisApplication.shardPrefs.notify()!!
+        set(value) = ThisApplication.shardPrefs.notify(value)
+
 
     fun reset()
     {
