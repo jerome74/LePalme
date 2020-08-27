@@ -14,10 +14,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wlp.palme.R
 import com.wlp.palme.model.Row
+import com.wlp.palme.service.LocationsService
 import com.wlp.palme.util.BROADCAST_RESERVATION_OK_1
+import org.json.JSONObject
 
 
-class RowsAdapterMeadowSX (val context : Context, val rows : List<Row>) :  RecyclerView.Adapter<RowsAdapterMeadowSX.Holder>() {
+class RowsAdapterMeadowSX (val context : Context, val rows : List<Row>, val localdate : String) :  RecyclerView.Adapter<RowsAdapterMeadowSX.Holder>() {
 
     inner class Holder (itemView: View?) : RecyclerView.ViewHolder(itemView!!)
     {
@@ -43,218 +45,10 @@ class RowsAdapterMeadowSX (val context : Context, val rows : List<Row>) :  Recyc
             tv_3_gr_sx?.text = row.locations[2].number.toString()
             tv_4_gr_sx?.text = row.locations[3].number.toString()
 
-            /**
-             * img_sb_1_gr_sx
-             * @method setOnClickListener
-             */
-
-
-            img_sb_1_gr_sx?.setOnClickListener({
-
-                if(row.locations[0].reserved == 1)
-                {
-                    Toast.makeText(context, "ombrellone già prenotato!", Toast.LENGTH_SHORT).show()
-
-                }else{
-
-                    val builder = AlertDialog.Builder(context)
-                    val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
-
-                    builder.setView(dialogView)
-
-                        .setPositiveButton("Inserisci", { dialog: DialogInterface?, which: Int ->
-
-                            val addNameTxt = dialogView.findViewById<TextView>(R.id.addNameTxt)
-                            val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
-                            val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
-
-                            row.locations[0].firstname = addNameTxt.text.toString()
-                            row.locations[0].surname = addSurnameTxt.text.toString()
-                            row.locations[0].phone = addNumberTxt.text.toString()
-                            row.locations[0].reserved = 1
-
-                            val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
-                            val rounded_1 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_1);
-
-                            rounded_1.cornerRadius = 15f;
-                            rounded_1.isCircular = true;
-
-                            img_sb_1_gr_sx.setImageDrawable(rounded_1);
-
-                        })
-                        .setNegativeButton("cancella", {
-                                dialog: DialogInterface?, which: Int ->
-
-                        }).create().show()}
-            })
-
-            /**
-             * img_sb_2_gr_sx
-             * @method setOnClickListener
-             */
-
-            img_sb_2_gr_sx?.setOnClickListener({
-
-                if(row.locations[1].reserved == 1)
-                {
-                    Toast.makeText(context, "ombrellone già prenotato!", Toast.LENGTH_SHORT).show()
-
-                }else{
-
-                    val builder = AlertDialog.Builder(context)
-                    val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
-
-                    builder.setView(dialogView)
-
-                        .setPositiveButton("Inserisci", { dialog: DialogInterface?, which: Int ->
-
-                            val addNameTxt = dialogView.findViewById<TextView>(R.id.addNameTxt)
-                            val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
-                            val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
-
-                            row.locations[1].firstname = addNameTxt.text.toString()
-                            row.locations[1].surname = addSurnameTxt.text.toString()
-                            row.locations[1].phone = addNumberTxt.text.toString()
-                            row.locations[1].reserved = 1
-
-
-                            val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
-                            val rounded_2 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_2);
-
-                            rounded_2.cornerRadius = 15f;
-                            rounded_2.isCircular = true;
-
-                            img_sb_2_gr_sx.setImageDrawable(rounded_2);
-
-                        })
-                        .setNegativeButton("cancella", {
-                                dialog: DialogInterface?, which: Int ->
-
-                        }).create().show()}
-            })
-
-            /**
-             * img_sb_3_gr_sx
-             * @method setOnClickListener
-             */
-
-            img_sb_3_gr_sx?.setOnClickListener({
-
-                if(row.locations[2].reserved == 1)
-                {
-                    Toast.makeText(context, "ombrellone già prenotato!", Toast.LENGTH_SHORT).show()
-
-                }else{
-
-
-                    val builder = AlertDialog.Builder(context)
-                    val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
-
-                    builder.setView(dialogView)
-
-                        .setPositiveButton("Inserisci", { dialog: DialogInterface?, which: Int ->
-
-                            val addNameTxt = dialogView.findViewById<TextView>(R.id.addNameTxt)
-                            val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
-                            val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
-
-                            row.locations[2].firstname = addNameTxt.text.toString()
-                            row.locations[2].surname = addSurnameTxt.text.toString()
-                            row.locations[2].phone = addNumberTxt.text.toString()
-                            row.locations[2].reserved = 1
-
-                            val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
-                            val rounded_3 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_3);
-
-                            rounded_3.cornerRadius = 15f;
-                            rounded_3.isCircular = true;
-
-                            img_sb_3_gr_sx.setImageDrawable(rounded_3);
-
-                        })
-                        .setNegativeButton("cancella", {
-                                dialog: DialogInterface?, which: Int ->
-
-                        }).create().show()}
-            })
-
-            /**
-             * img_sb_4_gr_sx
-             * @method setOnClickListener
-             */
-
-            img_sb_4_gr_sx?.setOnClickListener({
-
-
-                if(row.locations[3].reserved == 1)
-                {
-                    Toast.makeText(context, "ombrellone già prenotato!", Toast.LENGTH_SHORT).show()
-
-                }else{
-
-                    val builder = AlertDialog.Builder(context)
-                    val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
-
-                    builder.setView(dialogView)
-
-                        .setPositiveButton("Inserisci", { dialog: DialogInterface?, which: Int ->
-
-                            val addNameTxt = dialogView.findViewById<TextView>(R.id.addNameTxt)
-                            val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
-                            val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
-
-                            row.locations[3].firstname = addNameTxt.text.toString()
-                            row.locations[3].surname = addSurnameTxt.text.toString()
-                            row.locations[3].phone = addNumberTxt.text.toString()
-                            row.locations[3].reserved = 1
-
-                            val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
-                            val rounded_4 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_4);
-
-                            rounded_4.cornerRadius = 15f;
-                            rounded_4.isCircular = true;
-
-                            img_sb_4_gr_sx.setImageDrawable(rounded_4);
-
-                        })
-                        .setNegativeButton("cancella", {
-                                dialog: DialogInterface?, which: Int ->
-
-                        }).create().show()}
-            })
-
-
-            val bitmap_1 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[0].image, "mipmap", context.packageName))
-            val rounded_1 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_1);
-
-            rounded_1.cornerRadius = 15f;
-            rounded_1.isCircular = true;
-
-            img_sb_1_gr_sx.setImageDrawable(rounded_1);
-
-            val bitmap_2 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[1].image, "mipmap", context.packageName))
-            val rounded_2 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_2);
-
-            rounded_2.cornerRadius = 15f;
-            rounded_2.isCircular = true;
-
-            img_sb_2_gr_sx.setImageDrawable(rounded_2);
-
-            val bitmap_3 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[2].image, "mipmap", context.packageName))
-            val rounded_3 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_3);
-
-            rounded_3.cornerRadius = 15f;
-            rounded_3.isCircular = true;
-
-            img_sb_3_gr_sx.setImageDrawable(rounded_3);
-
-            val bitmap_4 = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[3].image, "mipmap", context.packageName))
-            val rounded_4 = RoundedBitmapDrawableFactory.create(context.resources,bitmap_4);
-
-            rounded_4.cornerRadius = 15f;
-            rounded_4.isCircular = true;
-
-            img_sb_4_gr_sx.setImageDrawable(rounded_4);
+            setEventClick(img_sb_1_gr_sx,row,layoutInflater,0, localdate)
+            setEventClick(img_sb_2_gr_sx,row,layoutInflater,1, localdate)
+            setEventClick(img_sb_3_gr_sx,row,layoutInflater,2, localdate)
+            setEventClick(img_sb_4_gr_sx,row,layoutInflater,3, localdate)
         }
     }
 
@@ -282,6 +76,163 @@ class RowsAdapterMeadowSX (val context : Context, val rows : List<Row>) :  Recyc
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bindProduct(rows[position], context)
         val item = rows[position]
+    }
+
+    /**
+     *
+     * setEventClick
+     *
+     */
+
+    fun setEventClick(img : ImageView, row : Row, layoutInflater : LayoutInflater, index : Int, localdate : String)
+    {
+        img?.setOnClickListener({
+
+            if(row.locations[index].reserved == 1)
+            {
+                val builder = AlertDialog.Builder(context)
+                val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
+
+                dialogView.findViewById<TextView>(R.id.addNameTxt).text = row.locations[index].firstname
+                dialogView.findViewById<TextView>(R.id.addSurnameTxt).text = row.locations[index].surname
+                dialogView.findViewById<TextView>(R.id.addNumberTxt).text = row.locations[index].phone
+
+                builder.setView(dialogView)
+
+                    .setPositiveButton("modifica", { dialog: DialogInterface?, which: Int ->
+
+                        row.locations[index].firstname = dialogView.findViewById<TextView>(R.id.addNameTxt).text.toString()
+                        row.locations[index].surname = dialogView.findViewById<TextView>(R.id.addSurnameTxt).text.toString()
+                        row.locations[index].phone = dialogView.findViewById<TextView>(R.id.addNumberTxt).text.toString()
+
+
+                        val bitmap = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded = RoundedBitmapDrawableFactory.create(context.resources,bitmap);
+
+                        rounded.cornerRadius = 15f;
+                        rounded.isCircular = true;
+
+                        img.setImageDrawable(rounded);
+
+                        LocationsService.updateLocation(context!!
+                            ,row.locations[index]
+                        ) { esito: Boolean, messaggio: String ->
+                            if(esito) {
+                                try{
+                                    Toast.makeText(context, "prenotazione modificata!", Toast.LENGTH_SHORT).show()
+
+                                }catch(e : Exception){
+                                    Toast.makeText(context, "error : ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                            } else {
+                                Toast.makeText(context!!, "errore modifica prenotazione : $messaggio", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    })
+                    .setNegativeButton("cancella", {
+                            dialog: DialogInterface?, which: Int ->
+
+                    })
+                    .setNeutralButton("annulla prenotazione", {
+                            dialog: DialogInterface?, which: Int ->
+
+                        LocationsService.deleteLocationsById(context!!
+                            ,row.locations[index]
+                        ) { esito: Boolean, messaggio: String ->
+                            if(esito) {
+                                try{
+                                    Toast.makeText(context, "prenotazione annullata!", Toast.LENGTH_SHORT).show()
+
+                                    row.locations[index].reset()
+
+                                    dialogView.findViewById<TextView>(R.id.addNameTxt).text = row.locations[index].firstname
+                                    dialogView.findViewById<TextView>(R.id.addSurnameTxt).text = row.locations[index].surname
+                                    dialogView.findViewById<TextView>(R.id.addNumberTxt).text = row.locations[index].phone
+
+                                    val bitmap = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[index].image, "mipmap", context.packageName))
+                                    val rounded = RoundedBitmapDrawableFactory.create(context.resources,bitmap);
+
+                                    rounded.cornerRadius = 15f;
+                                    rounded.isCircular = true;
+
+                                    img.setImageDrawable(rounded);
+
+
+                                }catch(e : Exception){
+                                    Toast.makeText(context, "error : ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                            } else {
+                                Toast.makeText(context!!, "errore annullamento prenotazione : $messaggio", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
+                    .create().show()
+
+            }else{
+
+                val builder = AlertDialog.Builder(context)
+                val dialogView = layoutInflater.inflate(R.layout.add_reservation_dialog, null)
+
+                builder.setView(dialogView)
+
+                    .setPositiveButton("Inserisci", { dialog: DialogInterface?, which: Int ->
+
+                        val addNameTxt = dialogView.findViewById<TextView>(R.id.addNameTxt)
+                        val addSurnameTxt = dialogView.findViewById<TextView>(R.id.addSurnameTxt)
+                        val addNumberTxt = dialogView.findViewById<TextView>(R.id.addNumberTxt)
+
+                        row.locations[index].image = "sunbed_out"
+                        row.locations[index].reserved = 1
+                        row.locations[index].firstname = addNameTxt.text.toString()
+                        row.locations[index].surname = addSurnameTxt.text.toString()
+                        row.locations[index].phone = addNumberTxt.text.toString()
+                        row.locations[index].datetime = localdate
+
+                        LocationsService.insertLocation(context!!
+                            ,row.locations[index]
+                        ) { esito: Boolean, messaggio: String ->
+                            if(esito) {
+                                try{
+                                    Toast.makeText(context, "prenotazione inserita!", Toast.LENGTH_SHORT).show()
+
+                                    val responseJson : JSONObject = JSONObject(messaggio)
+                                    row.locations[index].id = responseJson.getString("id").toInt()
+
+                                }catch(e : Exception){
+                                    Toast.makeText(context, "error : ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                            } else {
+                                Toast.makeText(context!!, "errore iserimento prenotazione : $messaggio", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+
+                        val bitmap = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier("sunbed_out", "mipmap", context.packageName))
+                        val rounded = RoundedBitmapDrawableFactory.create(context.resources,bitmap);
+
+                        rounded.cornerRadius = 15f;
+                        rounded.isCircular = true;
+
+                        img.setImageDrawable(rounded);
+
+                    })
+                    .setNegativeButton("cancella", {
+                            dialog: DialogInterface?, which: Int ->
+
+                    }).create().show()}
+        })
+
+        val bitmap = BitmapFactory.decodeResource(context.resources, context.resources.getIdentifier(row.locations[index].image, "mipmap", context.packageName))
+        val rounded = RoundedBitmapDrawableFactory.create(context.resources,bitmap);
+
+        rounded.cornerRadius = 15f;
+        rounded.isCircular = true;
+
+        img.setImageDrawable(rounded);
     }
 
 }

@@ -23,16 +23,17 @@ class SunbedActivity : AppCompatActivity() {
 
 
         val sector: String = intent.getStringExtra("SECTOR")
+        val localdate: String = intent.getStringExtra("DATE")
 
         if(sector == ROW_BOTTON_SX || sector == ROW_BOTTON_DX ){
-            recycleAdapterBeach = RowsAdapterBeach(this, DataDomain.sector(sector)!!)
+            recycleAdapterBeach = RowsAdapterBeach(this, DataDomain.sector(sector)!!,localdate)
             sunbedListView.adapter = recycleAdapterBeach
         }
 
 
 
         if(sector == ROW_TOP_DX){
-            recycleAdapterBeach = RowsAdapterBeach(this, DataDomain.sector(sector)!!)
+            recycleAdapterBeach = RowsAdapterBeach(this, DataDomain.sector(sector)!!,localdate)
             sunbedListView.adapter = recycleAdapterBeach
         }
 

@@ -117,11 +117,11 @@ class LoginActivity : AppCompatActivity() {
 
     fun manageSpinner(enable: Boolean, visibility : Int)
     {
-        logInpssBar.visibility = visibility;
+        FindReservBar.visibility = visibility;
 
         nameLoginTxt.isEnabled    = enable
         passLoginTxt.isEnabled   = enable
-        loginBtn.isEnabled = enable
+        FindinBtn.isEnabled = enable
     }
 
 

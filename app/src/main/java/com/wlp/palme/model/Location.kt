@@ -3,20 +3,20 @@ package com.wlp.palme.model
 import org.json.JSONObject
 
 class Location(var number  : String = "",
-               var image : String = "",
-               var rowname : String = "",
-               var locationname : String = "",
+               var image : String,
+               var rowname : String,
+               var locationname : String,
                var reserved: Int = 0,
                var firstname : String = "",
                var surname : String = "",
                var phone : String = "",
                var datetime : String = "")  : IModel {
 
+    var id : Int = 0
+
     fun reset()
     {
         image = "sunbed_free"
-        rowname = ""
-        locationname = ""
         reserved = 0
         firstname = ""
         surname = ""

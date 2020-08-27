@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".controller.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +24,8 @@
         <activity android:name=".controller.SunbedActivity" />
         <activity android:name=".LepalmeActivity" />
         <activity android:name=".controller.LoginActivity" />
+        <activity android:name=".controller.ReservationActivity"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

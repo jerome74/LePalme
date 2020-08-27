@@ -19,9 +19,10 @@ class SunbedActivityGreenSx : AppCompatActivity() {
         setContentView(R.layout.activity_sunbed_green_sx)
 
         val sector: String = intent.getStringExtra("SECTOR")
+        val localdate: String = intent.getStringExtra("DATE")
 
         if(sector == ROW_TOP_SX){
-            recycleAdapterMeadowSX = RowsAdapterMeadowSX(this, DataDomain.sector(sector)!!)
+            recycleAdapterMeadowSX = RowsAdapterMeadowSX(this, DataDomain.sector(sector)!!,localdate)
             sunbedListView.adapter = recycleAdapterMeadowSX
         }
 

@@ -19,10 +19,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.navigation.NavigationView
-import com.wlp.palme.controller.LoginActivity
-import com.wlp.palme.controller.SunbedActivity
-import com.wlp.palme.controller.SunbedActivityGreenDx
-import com.wlp.palme.controller.SunbedActivityGreenSx
+import com.wlp.palme.controller.*
 import com.wlp.palme.controller.handler.SplashHandler
 import com.wlp.palme.domain.AuthObj
 import com.wlp.palme.domain.DataDomain
@@ -34,6 +31,7 @@ import com.wlp.palme.service.EmailService
 import com.wlp.palme.service.LocationsService
 import com.wlp.palme.util.*
 import kotlinx.android.synthetic.main.activity_le_palme.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -42,11 +40,15 @@ class LepalmeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private var localactivitydate = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_le_palme)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+
 
         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar
             , R.string.open_navigation_drawer
@@ -70,16 +72,34 @@ class LepalmeActivity : AppCompatActivity() {
     }
 
 
+    fun onReservationStartBtnClicked(view : MenuItem){
+
+        if (!AuthObj.isLoggIn) {
+
+            Toast.makeText(this, "eseguire il Login!", Toast.LENGTH_SHORT).show()
+        }
+        else {
+
+            val localIntent: Intent = Intent(this, ReservationActivity::class.java)
+            startActivity(localIntent)
+        }
+    }
+
     fun onClick_img_sector_botton_dx(view : View){
 
         if (!AuthObj.isLoggIn) {
 
             Toast.makeText(this, "eseguire il Login!", Toast.LENGTH_SHORT).show()
+        }
+        else if (date_tv.text.isNullOrBlank()) {
+
+                Toast.makeText(this, "seleziona data!", Toast.LENGTH_SHORT).show()
 
         }else {
 
             val localIntent: Intent = Intent(this, SunbedActivity::class.java)
             localIntent.putExtra("SECTOR", ROW_BOTTON_DX)
+            localIntent.putExtra("DATE", localactivitydate)
             startActivity(localIntent)
         }
     }
@@ -90,10 +110,15 @@ class LepalmeActivity : AppCompatActivity() {
 
             Toast.makeText(this, "eseguire il Login!", Toast.LENGTH_SHORT).show()
 
+        }else if (date_tv.text.isNullOrBlank()) {
+
+            Toast.makeText(this, "seleziona data!", Toast.LENGTH_SHORT).show()
+
         }else {
 
             val localIntent: Intent = Intent(this, SunbedActivity::class.java)
             localIntent.putExtra("SECTOR", ROW_BOTTON_SX)
+            localIntent.putExtra("DATE", localactivitydate)
             startActivity(localIntent)
         }
 
@@ -105,10 +130,15 @@ class LepalmeActivity : AppCompatActivity() {
 
             Toast.makeText(this, "eseguire il Login!", Toast.LENGTH_SHORT).show()
 
+        }else if (date_tv.text.isNullOrBlank()) {
+
+            Toast.makeText(this, "seleziona data!", Toast.LENGTH_SHORT).show()
+
         }else {
 
             val localIntent: Intent = Intent(this, SunbedActivityGreenSx::class.java)
             localIntent.putExtra("SECTOR", ROW_TOP_SX)
+            localIntent.putExtra("DATE", localactivitydate)
             startActivity(localIntent)
         }
     }
@@ -119,10 +149,15 @@ class LepalmeActivity : AppCompatActivity() {
 
             Toast.makeText(this, "eseguire il Login!", Toast.LENGTH_SHORT).show()
 
+        }else if (date_tv.text.isNullOrBlank()) {
+
+            Toast.makeText(this, "seleziona data!", Toast.LENGTH_SHORT).show()
+
         }else {
 
             val localIntent: Intent = Intent(this, SunbedActivityGreenDx::class.java)
             localIntent.putExtra("SECTOR", ROW_TOP_DX)
+            localIntent.putExtra("DATE", localactivitydate)
             startActivity(localIntent)
         }
     }
@@ -187,8 +222,13 @@ class LepalmeActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?)
         {
             var datetime =  intent!!.getStringExtra("datetime")
-            var localLocation = Location()
+            val localLocation = Location("","","","")
             localLocation.datetime = datetime
+
+            if(!datetime.equals(localactivitydate)) {
+                DataDomain.reset()
+                localactivitydate = datetime
+            }
 
 
             LocationsService.findLocationsByDateTime(context!!
@@ -196,7 +236,7 @@ class LepalmeActivity : AppCompatActivity() {
             ) { esito: Boolean, messaggio: String ->
                 if(esito) {
                     try{
-                        if(messaggio.length > 0) {
+                        if(messaggio.length > 0 && !messaggio.equals("[]")) {
                             val responseJson: JSONArray = JSONArray(messaggio)
 
                             var i = 0
@@ -210,14 +250,17 @@ class LepalmeActivity : AppCompatActivity() {
                                    for (locallocation in rows.locations) {
                                         if(locallocation.number.equals(number))
                                         {
+                                            locallocation.number = responseJson.getJSONObject(i).getString("number")
+                                            locallocation.image = responseJson.getJSONObject(i).getString("image")
                                             locallocation.rowname = responseJson.getJSONObject(i).getString("rowname")
                                             locallocation.locationname = responseJson.getJSONObject(i).getString("locationname")
-                                            locallocation.image = responseJson.getJSONObject(i).getString("image")
                                             locallocation.reserved = 1
                                             locallocation.firstname = responseJson.getJSONObject(i).getString("firstname")
                                             locallocation.surname = responseJson.getJSONObject(i).getString("surname")
                                             locallocation.phone = responseJson.getJSONObject(i).getString("phone")
                                             locallocation.datetime = responseJson.getJSONObject(i).getString("datetime")
+
+                                            locallocation.id = responseJson.getJSONObject(i).getString("id").toInt()
                                         }
                                    }
                                }
