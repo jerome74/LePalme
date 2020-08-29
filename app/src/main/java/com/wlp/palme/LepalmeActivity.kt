@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.os.Message
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -32,6 +34,7 @@ import com.wlp.palme.service.LocationsService
 import com.wlp.palme.util.*
 import kotlinx.android.synthetic.main.activity_le_palme.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.json.JSONArray
@@ -41,6 +44,8 @@ class LepalmeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private lateinit var animation : Animation
+
     private var localactivitydate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +53,15 @@ class LepalmeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_le_palme)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        animation = AnimationUtils.loadAnimation(this,R.anim.slide_up);
+
+        img_sector_botton_dx.startAnimation(animation)
+        img_sector_botton_sx.startAnimation(animation)
+        img_sector_top_dx.startAnimation(animation)
+        img_sector_top_sx.startAnimation(animation)
+        tv_prenotazioni.setSelected(true);
+
 
 
 
